@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { HiOutlineUser, HiOutlineLockClosed } from 'react-icons/hi';
 
 type HtmlFor = 'email' | 'password';
@@ -8,14 +8,14 @@ interface Props {
   htmlFor: HtmlFor;
   type: InputType;
   placeholder: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  register?: UseFormRegisterReturn;
 }
 
 const FormInput: React.FC<Props> = ({
   htmlFor,
   type,
   placeholder,
-  onChange,
+  register,
 }) => {
   return (
     <label
@@ -26,7 +26,7 @@ const FormInput: React.FC<Props> = ({
         {htmlFor === 'email' ? <HiOutlineUser /> : <HiOutlineLockClosed />}
       </div>
       <input
-        onChange={onChange}
+        {...register}
         id={htmlFor === 'email' ? 'email' : 'password'}
         type={type}
         placeholder={placeholder}

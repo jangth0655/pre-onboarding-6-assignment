@@ -57,6 +57,8 @@
     "prefer-const": 0,
     "react/button-has-type": 0,
     "HiOutlineArrowRightOnRectangle": 0,
-    "import/order": 0
+    "import/order": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/no-shadow": 0
   }
 }

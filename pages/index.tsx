@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import LoginForm from '../components/auth/LoginForm';
+import LoginForm from '../components/auth/Form';
 
 const Home: NextPage = () => {
   return <LoginForm />;
