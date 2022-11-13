@@ -2,21 +2,23 @@ import Footer from '../Footer';
 import FormButton from './FormButton';
 import FormTitle from './FormTitle';
 import FormInput from './FormInput';
-import { FieldErrorsImpl, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorMessage from '../ErrorMessage';
+import authService from '../../service/authService';
+import HttpError from '../../service/httpError';
 
 interface SubmitForm {
   email: string;
   password: string;
-  error?: string;
 }
 
 const SIGN_UP = '/';
 const LOGIN = '/login';
 const Form = () => {
-  const { pathname, route } = useRouter();
+  const router = useRouter();
+  const { pathname } = router;
   const [formError, setFormError] = useState<string>();
   const {
     register,
@@ -24,12 +26,18 @@ const Form = () => {
     formState: { errors, isValid },
   } = useForm<SubmitForm>();
 
-  const onSubmit = (data: SubmitForm) => {
+  const onSubmit = async (data: SubmitForm) => {
     if (pathname === SIGN_UP) {
-      console.log('sginup', data);
+      const result = await authService.singUp(data);
+      if ('accessToken' in result) {
+        router.push('/login');
+      }
     }
     if (pathname === LOGIN) {
-      console.log('login', data);
+      const result = await authService.login(data);
+      if ('accessToken' in result) {
+        router.push('/account');
+      }
     }
   };
 
