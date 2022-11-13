@@ -19,7 +19,6 @@ const LoginForm = () => {
     const {
       currentTarget: { value },
     } = e;
-
     setLoginValue((prev) => ({ ...prev, email: value }));
   };
 
