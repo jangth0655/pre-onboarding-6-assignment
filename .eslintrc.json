@@ -54,6 +54,9 @@
     "react-hooks/exhaustive-deps": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "no-plusplus": 0,
-    "prefer-const": 0
+    "prefer-const": 0,
+    "react/button-has-type": 0,
+    "HiOutlineArrowRightOnRectangle": 0,
+    "import/order": 0
   }
 }
