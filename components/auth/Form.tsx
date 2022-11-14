@@ -29,7 +29,6 @@ const Form = () => {
     handleSubmit,
     formState: { isValid },
     setValue,
-    getValues,
   } = useForm<SubmitForm>();
 
   const onSubmit = async (data: SubmitForm) => {

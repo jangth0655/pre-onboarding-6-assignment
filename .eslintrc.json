@@ -61,6 +61,9 @@
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/no-shadow": 0,
     "class-methods-use-this": 0,
-    "@typescript-eslint/no-unused-expressions": 0
+    "@typescript-eslint/no-unused-expressions": 0,
+    "import/no-cycle": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   }
 }
