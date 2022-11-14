@@ -1,9 +1,9 @@
-type User = {
+export type User = {
   email: string;
   id: number;
 };
 
-export type AuthData = {
+export type UserInfo = {
   accessToken: string;
   user: User;
 };

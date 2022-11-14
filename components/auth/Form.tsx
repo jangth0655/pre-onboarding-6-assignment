@@ -1,14 +1,17 @@
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import Footer from '../Footer';
 import FormButton from './FormButton';
 import FormTitle from './FormTitle';
 import FormInput from './FormInput';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import LinkToAuth from './LinkToAuth';
 import ErrorMessage from '../ErrorMessage';
+
 import authService from '../../service/authService';
 import HttpError from '../../service/httpError';
-import LinkToAuth from './LinkToAuth';
+import storage from '../../service/storageService';
 
 interface SubmitForm {
   email: string;
@@ -19,12 +22,14 @@ const SIGN_UP = '/';
 const LOGIN = '/login';
 const Form = () => {
   const router = useRouter();
-  const { pathname } = router;
+  const { pathname, query } = router;
   const [formError, setFormError] = useState<string>();
   const {
     register,
     handleSubmit,
     formState: { isValid },
+    setValue,
+    getValues,
   } = useForm<SubmitForm>();
 
   const onSubmit = async (data: SubmitForm) => {
@@ -32,7 +37,15 @@ const Form = () => {
       try {
         const result = await authService.singUp(data);
         if ('accessToken' in result) {
-          router.push('/login');
+          router.push(
+            {
+              pathname: '/login',
+              query: {
+                email: result.user.email,
+              },
+            },
+            '/login'
+          );
         }
       } catch (error) {
         if (error instanceof HttpError) {
@@ -45,16 +58,23 @@ const Form = () => {
       try {
         const result = await authService.login(data);
         if ('accessToken' in result) {
+          storage.setStorage(result.user);
           router.push('/accounts');
         }
       } catch (error) {
         if (error instanceof HttpError) {
-          console.log(error.login);
           setFormError(error.login);
         }
       }
     }
   };
+
+  useEffect(() => {
+    if (pathname === LOGIN && query.email) {
+      const { email } = query;
+      setValue('email', email as string);
+    }
+  }, [query]);
 
   function selectTitle(path: string) {
     return path === SIGN_UP ? '회원가입' : '로그인';
