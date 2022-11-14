@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { UserInfo, SubmitData } from '../model/types';
-import HttpError from './httpError';
+import HttpError from './http/httpError';
 
 interface AuthService {
   login: (data: SubmitData) => Promise<UserInfo>;

@@ -4,6 +4,7 @@ import secureLocalStorage from 'react-secure-storage';
 interface Storage {
   setStorage: (user: User) => void;
   getStorage: () => any;
+  deleteStorage: () => void;
 }
 
 export const TOKEN = 'TOKEN';
@@ -17,6 +18,10 @@ class StorageImpl implements Storage {
   getStorage = () => {
     const result = secureLocalStorage.getItem(TOKEN);
     return JSON.parse(result as string);
+  };
+
+  deleteStorage = () => {
+    secureLocalStorage.removeItem(TOKEN);
   };
 }
 

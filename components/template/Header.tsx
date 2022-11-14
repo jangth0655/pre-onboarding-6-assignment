@@ -1,13 +1,19 @@
+import React from 'react';
 import { AiOutlineMenu, AiOutlineBell } from 'react-icons/ai';
+import { User } from '../../model/types';
 
-const Header = () => {
+interface Props {
+  user?: User;
+}
+
+const Header: React.FC<Props> = ({ user }) => {
   return (
     <header className="py-4 flex justify-between items-center">
       <div className="px-6 space-x-4 font-bold flex items-center">
         <div>
           <AiOutlineMenu fontWeight={900} />
         </div>
-        <span>투자계좌</span>
+        <span>{user?.email ? user.email : '투자계좌'}</span>
       </div>
 
       <div className="px-4 flex items-center space-x-6">

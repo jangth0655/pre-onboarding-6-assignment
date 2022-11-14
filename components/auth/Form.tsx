@@ -10,7 +10,7 @@ import LinkToAuth from './LinkToAuth';
 import ErrorMessage from '../ErrorMessage';
 
 import authService from '../../service/authService';
-import HttpError from '../../service/httpError';
+import HttpError from '../../service/http/httpError';
 import storage from '../../service/storageService';
 
 interface SubmitForm {
