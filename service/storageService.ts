@@ -1,21 +1,22 @@
 import { User } from '../model/types';
+import secureLocalStorage from 'react-secure-storage';
 
 interface Storage {
   setStorage: (user: User) => void;
   getStorage: () => any;
 }
 
-const TOKEN = 'TOKEN';
+export const TOKEN = 'TOKEN';
 
 class StorageImpl implements Storage {
   setStorage = (user: User) => {
     const stringify = JSON.stringify(user);
-    localStorage.setItem(TOKEN, stringify);
+    secureLocalStorage.setItem(TOKEN, stringify);
   };
 
   getStorage = () => {
-    const result = localStorage.getItem(TOKEN);
-    return JSON.parse(result || '');
+    const result = secureLocalStorage.getItem(TOKEN);
+    return JSON.parse(result as string);
   };
 }
 
