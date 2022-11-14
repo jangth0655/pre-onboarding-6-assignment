@@ -3,8 +3,9 @@ import {
   AiOutlineDashboard,
   AiOutlineUser,
   AiOutlineLogout,
+  AiFillBank,
 } from 'react-icons/ai';
-import { MdOutlineAccountBalance } from 'react-icons/md';
+
 import { Title } from './SideBar';
 
 interface Props {
@@ -19,7 +20,7 @@ const SidebarLi: React.FC<Props> = ({ title, id }) => {
       case '대시보드':
         return <AiOutlineDashboard />;
       case '계좌목록':
-        return <MdOutlineAccountBalance />;
+        return <AiFillBank />;
       case '사용자':
         return <AiOutlineUser />;
       case '로그아웃':
