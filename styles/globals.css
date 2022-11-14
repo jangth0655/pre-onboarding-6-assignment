@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 button {
   @apply border-inherit outline-0 bg-transparent;
 }

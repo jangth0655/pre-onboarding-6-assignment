@@ -3,11 +3,12 @@ import FormButton from './FormButton';
 import FormTitle from './FormTitle';
 import FormInput from './FormInput';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ErrorMessage from '../ErrorMessage';
 import authService from '../../service/authService';
 import HttpError from '../../service/httpError';
+import LinkToAuth from './LinkToAuth';
 
 interface SubmitForm {
   email: string;
@@ -23,20 +24,34 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<SubmitForm>();
 
   const onSubmit = async (data: SubmitForm) => {
     if (pathname === SIGN_UP) {
-      const result = await authService.singUp(data);
-      if ('accessToken' in result) {
-        router.push('/login');
+      try {
+        const result = await authService.singUp(data);
+        if ('accessToken' in result) {
+          router.push('/login');
+        }
+      } catch (error) {
+        if (error instanceof HttpError) {
+          setFormError(error.sigInUp);
+          return;
+        }
       }
     }
     if (pathname === LOGIN) {
-      const result = await authService.login(data);
-      if ('accessToken' in result) {
-        router.push('/account');
+      try {
+        const result = await authService.login(data);
+        if ('accessToken' in result) {
+          router.push('/accounts');
+        }
+      } catch (error) {
+        if (error instanceof HttpError) {
+          console.log(error.login);
+          setFormError(error.login);
+        }
       }
     }
   };
@@ -76,6 +91,9 @@ const Form = () => {
             </div>
             <FormButton title={selectTitle(pathname)} isValid={isValid} />
           </form>
+          <div className="w-[20%] p-1 flex items-center justify-center cursor-pointer">
+            <LinkToAuth pathname={pathname} />
+          </div>
         </div>
         <div className="mt-8">
           <Footer />
