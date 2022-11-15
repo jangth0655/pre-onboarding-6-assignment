@@ -9,8 +9,8 @@ export interface Account {
   assets: string;
   payments: string;
   is_active: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface User {

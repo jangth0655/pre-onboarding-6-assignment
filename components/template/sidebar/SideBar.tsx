@@ -20,7 +20,7 @@ const sideBarList: SideBarListType[] = [
 
 const SideBar: React.FC<Props> = ({ userId }) => {
   return (
-    <div className="bg-gray-900 text-gray-400 xl:w-80 w-52  absolute h-full">
+    <div className="bg-gray-900 text-gray-400 xl:w-52 w-44  absolute h-full">
       <h1 className="p-6 text-white text-2xl shadow-md shadow-gray-700">
         PREFACE
       </h1>

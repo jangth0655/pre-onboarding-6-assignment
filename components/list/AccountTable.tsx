@@ -11,11 +11,12 @@ const tableTitle = [
   { title: '평가금액' },
   { title: '입금금액' },
   { title: '개설일' },
+  { title: '활성화' },
 ];
 
 const AccountTable = () => {
   return (
-    <table className="min-w-full table-auto text-gray-800">
+    <table className="table-auto text-gray-800 w-full">
       <thead>
         <tr>
           {tableTitle.map((title) => (
