@@ -16,11 +16,11 @@ const tableTitle = [
 
 const AccountTable = () => {
   return (
-    <table className="table-auto text-gray-800 w-full">
+    <table className="table-auto text-gray-800 w-full mt-2">
       <thead>
         <tr>
           {tableTitle.map((title) => (
-            <th className="px-4 " key={v4()}>
+            <th className="px-4" key={v4()}>
               {title.title}
             </th>
           ))}

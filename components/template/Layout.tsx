@@ -19,11 +19,11 @@ const Layout: React.FC<Props> = ({ children }) => {
   const user = useUser();
 
   return (
-    <section className="min-h-screen">
+    <section className="">
       <SideBar userId={user?.id} />
-      <div className="xl:ml-52 ml-44 border-2 max-h-screen">
+      <div className="xl:ml-52 ml-44 border-2">
         <Header />
-        <main className="h-[90vh] border-2 border-gray-300 bg-gray-200 overflow-y-scroll ">
+        <main className="border-2 border-gray-300 bg-gray-200 ">
           {children}
         </main>
       </div>

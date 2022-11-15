@@ -1,21 +1,22 @@
 import SidebarLi from './SidebarLi';
+import { v4 } from 'uuid';
 
 interface Props {
   userId?: number;
 }
 
-type SideBarListType = {
+export type SideBarListType = {
   title: Title;
-  id: number;
+  path: string;
 };
 
 export type Title = '대시보드' | '계좌목록' | '사용자' | '로그아웃';
 
 const sideBarList: SideBarListType[] = [
-  { title: '대시보드', id: 1 },
-  { title: '계좌목록', id: 2 },
-  { title: '사용자', id: 3 },
-  { title: '로그아웃', id: 4 },
+  { title: '대시보드', path: 'dashboard' },
+  { title: '계좌목록', path: 'accounts' },
+  { title: '사용자', path: 'users' },
+  { title: '로그아웃', path: 'logout' },
 ];
 
 const SideBar: React.FC<Props> = ({ userId }) => {
@@ -26,7 +27,7 @@ const SideBar: React.FC<Props> = ({ userId }) => {
       </h1>
       <ul>
         {sideBarList.map((li) => (
-          <SidebarLi userId={userId} key={li.id} title={li.title} />
+          <SidebarLi userId={userId} key={v4()} sidebarItem={li} />
         ))}
       </ul>
     </div>

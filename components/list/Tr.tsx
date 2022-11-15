@@ -1,17 +1,19 @@
-import AccountTable from './AccountTable';
-import { v4 } from 'uuid';
 import { useAccount } from '../../hooks/account/useAccount';
+import useUserinfo from '../../hooks/user/useUserInfo';
 import Td from './Td';
 
 const Tr = () => {
-  const { accountList, isLoading } = useAccount();
+  const { accountList } = useAccount();
+  const { userList } = useUserinfo();
 
   return (
-    <tbody>
-      {accountList?.map((item) => (
-        <Td key={item.uuid} account={item} />
-      ))}
-    </tbody>
+    <>
+      <tbody>
+        {accountList?.map((item) => (
+          <Td key={item.uuid} account={item} userList={userList} />
+        ))}
+      </tbody>
+    </>
   );
 };
 export default Tr;

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 import {
   AiOutlineDashboard,
   AiOutlineUser,
@@ -7,15 +7,17 @@ import {
   AiFillBank,
 } from 'react-icons/ai';
 import storage from '../../../service/storageService';
+import cls from '../../../utils/className';
 
-import { Title } from './SideBar';
+import { SideBarListType, Title } from './SideBar';
 
 interface Props {
-  title: Title;
+  sidebarItem: SideBarListType;
   userId?: number;
+  matchedPage?: boolean;
 }
 
-const SidebarLi: React.FC<Props> = ({ title, userId }) => {
+const SidebarLi: React.FC<Props> = ({ sidebarItem, userId }) => {
   const router = useRouter();
   const loginTitle = userId ? '로그아웃' : '로그인';
 
@@ -43,7 +45,7 @@ const SidebarLi: React.FC<Props> = ({ title, userId }) => {
         router.push('/accounts');
         break;
       case '사용자':
-        router.push(`/users/${userId}`);
+        router.push(`/users/1`);
         break;
       case loginTitle:
         storage.deleteStorage();
@@ -54,12 +56,18 @@ const SidebarLi: React.FC<Props> = ({ title, userId }) => {
     }
   };
 
+  const matchedPage = sidebarItem.path === router.asPath.split('/')[1];
+
   return (
     <div
-      onClick={() => handlePage(title)}
-      className="flex items-center p-6 space-x-3  last:mb-0 text-md xl:text-lg  hover:text-white hover:bg-sky-700 transition-all cursor-pointer"
+      onClick={() => handlePage(sidebarItem.title)}
+      className={cls(
+        matchedPage ? 'bg-sky-700 text-white' : '',
+        'flex items-center p-6 space-x-3  last:mb-0 text-md xl:text-lg  hover:text-white hover:bg-sky-700 transition-all cursor-pointer'
+      )}
     >
-      {/* <div>{matchTitleWithIcon(title)}</div> */} <span>{title}</span>
+      <div>{matchTitleWithIcon(sidebarItem.title)}</div>{' '}
+      <span>{sidebarItem.title}</span>
     </div>
   );
 };
