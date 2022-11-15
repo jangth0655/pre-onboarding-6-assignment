@@ -1,16 +1,16 @@
-import { User } from '../model/types';
+import { User, UserInfo } from '../model/types';
 import secureLocalStorage from 'react-secure-storage';
 
 interface Storage {
-  setStorage: (user: User) => void;
+  setStorage: (user: UserInfo) => void;
   getStorage: () => any;
   deleteStorage: () => void;
 }
 
-export const TOKEN = 'TOKEN';
+export const TOKEN = 'userInfo';
 
 class StorageImpl implements Storage {
-  setStorage = (user: User) => {
+  setStorage = (user: UserInfo) => {
     const stringify = JSON.stringify(user);
     secureLocalStorage.setItem(TOKEN, stringify);
   };

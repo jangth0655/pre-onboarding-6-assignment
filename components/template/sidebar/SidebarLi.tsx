@@ -18,6 +18,7 @@ interface Props {
 const SidebarLi: React.FC<Props> = ({ title, userId }) => {
   const router = useRouter();
   const loginTitle = userId ? '로그아웃' : '로그인';
+
   const matchTitleWithIcon = (title: Title) => {
     switch (title) {
       case '대시보드':

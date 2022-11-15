@@ -1,23 +1,19 @@
-import { createContext, useContext } from 'react';
-import AccountServiceImpl from '../service/accoutService';
+import { createContext, useContext, useEffect, useState } from 'react';
+import AccountServiceImpl from '../service/accountService';
 import HttpClient from '../service/http/httpClient';
 
 interface Props {
   children: React.ReactNode;
 }
 
-interface initialState {
-  accountApi: AccountServiceImpl;
-}
+const httpClient = new HttpClient();
+const accountApi = new AccountServiceImpl(httpClient.client);
 
-export const AccountContext = createContext<initialState | null>(null);
-
-const client = new HttpClient();
-const accountApi = new AccountServiceImpl(client);
+export const AccountContext = createContext<AccountServiceImpl | null>(null);
 
 export const AccountApiProvider = ({ children }: Props) => {
   return (
-    <AccountContext.Provider value={{ accountApi }}>
+    <AccountContext.Provider value={accountApi}>
       {children}
     </AccountContext.Provider>
   );

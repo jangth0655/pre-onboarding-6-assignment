@@ -57,7 +57,7 @@ const Form = () => {
       try {
         const result = await authService.login(data);
         if ('accessToken' in result) {
-          storage.setStorage(result.user);
+          storage.setStorage(result);
           router.push('/accounts');
         }
       } catch (error) {

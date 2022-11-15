@@ -1,11 +1,15 @@
 import { NextPage } from 'next';
+import AccountList from '../../components/list/Account.List';
 import Layout from '../../components/template/Layout';
+import { AccountApiProvider } from '../../context/accountContext';
 
-const accounts: NextPage = () => {
+const Accounts: NextPage = () => {
   return (
-    <Layout>
-      <h1>accounts</h1>
-    </Layout>
+    <AccountApiProvider>
+      <Layout>
+        <AccountList />
+      </Layout>
+    </AccountApiProvider>
   );
 };
-export default accounts;
+export default Accounts;

@@ -1,10 +1,18 @@
 import axios, { AxiosInstance } from 'axios';
+import storage from '../storageService';
 
-export default class HttpClient {
+const token =
+  typeof window !== 'undefined' ? storage.getStorage()?.accessToken : '';
+class HttpClient {
   client: AxiosInstance;
   constructor() {
     this.client = axios.create({
-      baseURL: 'http://localhost:4000',
+      baseURL: `/api`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 }
+
+export default HttpClient;

@@ -5,17 +5,19 @@ import {
   Hydrate,
 } from '@tanstack/react-query';
 import '../styles/globals.css';
-import { useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(() => new QueryClient());
+  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />;
-      </Hydrate>
+      <Component {...pageProps} />;
     </QueryClientProvider>
   );
 }
 
 export default MyApp;
+
+/* 
+  <Hydrate state={pageProps.dehydratedState}>
+ </Hydrate>
+*/
