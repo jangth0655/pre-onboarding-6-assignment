@@ -1,10 +1,14 @@
+import { memo } from 'react';
+import useUserinfo from '../../hooks/user/useUserInfo';
 import {
   accountActive,
+  accountBroker,
   accountCurrency,
   accountDate,
   accountName,
   accountNumber,
   accountState,
+  accountUsername,
 } from '../../libs/formatTable';
 import { Account } from '../../model/inteface';
 
@@ -13,6 +17,9 @@ interface Props {
 }
 
 const Td = ({ account }: Props) => {
+  const { userList } = useUserinfo();
+
+  console.log();
   return (
     <>
       <tr className="">
@@ -23,13 +30,15 @@ const Td = ({ account }: Props) => {
           <span className="tex-sm">{accountNumber(account.number)}</span>
         </td>
         <td className="text-center px-4 py-2 ">
-          <span className="tex-sm">{account.user_id}</span>
+          <span className="tex-sm">
+            {accountUsername(userList, account.user_id)}
+          </span>
         </td>
         <td className="text-center px-4 py-2 ">
           <span className="tex-sm">{accountState(account.status)}</span>
         </td>
         <td className="text-center px-4 py-2 ">
-          <span className="tex-sm">{account.broker_id}</span>
+          <span className="tex-sm">{accountBroker(account.broker_id)}</span>
         </td>
         <td className="text-center px-4 py-2 ">
           <span className="tex-sm">{accountCurrency(account.assets)}</span>
@@ -47,4 +56,4 @@ const Td = ({ account }: Props) => {
     </>
   );
 };
-export default Td;
+export default memo(Td);

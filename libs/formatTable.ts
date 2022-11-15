@@ -1,5 +1,12 @@
-export const accountName = (name: string) => {
-  return name.split('Account')[0].trim();
+import { User } from '../model/inteface';
+import { brokerData } from '../model/types';
+
+export const accountUsername = (list?: User[], userId?: number) => {
+  if (!list || !userId) return;
+  const result = list.filter((user) => {
+    return user.id === userId ? user['name'] : null;
+  });
+  return result[0].name;
 };
 
 export const accountNumber = (string: string) => {
@@ -45,4 +52,12 @@ export const accountDate = (date: Date) => {
 
 export const accountActive = (isActive: boolean) => {
   return isActive ? ' ⃝' : '❌';
+};
+
+export const accountName = (name: string) => {
+  return name.split('Account')[0].trim();
+};
+
+export const accountBroker = (brokerId: string) => {
+  return brokerData[brokerId];
 };

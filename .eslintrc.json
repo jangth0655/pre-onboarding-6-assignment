@@ -73,6 +73,8 @@
     "@typescript-eslint/naming-convention": 0,
     "react/jsx-no-constructed-context-values": 0,
     "@typescript-eslint/return-await": 0,
-    "prefer-template": 0
+    "prefer-template": 0,
+    "dot-notation": 0,
+    "@typescript-eslint/dot-notation": 0
   }
 }

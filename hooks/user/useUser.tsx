@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { User } from '../model/types';
+import { User } from '../../model/types';
 
-import storage from '../service/storageService';
+import storage from '../../service/storageService';
 
 const useUser = () => {
   const [user, setUser] = useState<User>(getUserInfo());

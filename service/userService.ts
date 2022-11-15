@@ -19,7 +19,7 @@ export default class UserServiceImpl implements UserService {
       .then((res) => res.data);
   };
 
-  userList = (_page: number) => {
+  userList = (_page = 1) => {
     return this.httpClient.client
       .get<User[]>('/users', {
         params: {

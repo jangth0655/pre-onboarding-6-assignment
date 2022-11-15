@@ -26,6 +26,6 @@ export interface User {
   address: string;
   detail_address: '09011 잠실동 Apt. 586';
   last_login: string;
-  created_at: string;
-  updated_at: string;
+  created_at: Date;
+  updated_at: Date;
 }

@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import useUser from '../../hooks/useUser';
+import useUser from '../../hooks/user/useUser';
 import Footer from '../Footer';
 import Header from './Header';
 import SideBar from './sidebar/SideBar';
