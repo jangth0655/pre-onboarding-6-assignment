@@ -1,53 +1,31 @@
+import React from 'react';
+import Tr from './Tr';
 import { v4 } from 'uuid';
 
-interface Props {
-  title: string;
-}
-
-type Table = {
-  title: Text;
-};
-
-type Text =
-  | '증권사'
-  | '계좌번호'
-  | '고객명'
-  | '운용상태'
-  | '계약원금'
-  | '예수금'
-  | '총자산'
-  | '평가순익'
-  | '수익률'
-  | '상품명';
-
-const tableTitle: Table[] = [
-  { title: '증권사' },
+const tableTitle = [
+  { title: '계죄명' },
   { title: '계좌번호' },
   { title: '고객명' },
-  { title: '운용상태' },
-  { title: '계약원금' },
-  { title: '예수금' },
-  { title: '총자산' },
-  { title: '평가순익' },
-  { title: '수익률' },
-  { title: '상품명' },
+  { title: '계좌상태' },
+  { title: '브로커명' },
+  { title: '평가금액' },
+  { title: '입금금액' },
+  { title: '개설일' },
 ];
 
 const AccountTable = () => {
   return (
-    <table className="border-2">
-      <tbody>
+    <table className="min-w-full table-auto text-gray-800">
+      <thead>
         <tr>
           {tableTitle.map((title) => (
-            <th key={v4()}>{title.title}</th>
+            <th className="px-4 " key={v4()}>
+              {title.title}
+            </th>
           ))}
         </tr>
-        <tr className="flex flex-col">
-          <td>asdf</td>
-          <td>asdf</td>
-          <td>asdf</td>
-        </tr>
-      </tbody>
+      </thead>
+      <Tr />
     </table>
   );
 };

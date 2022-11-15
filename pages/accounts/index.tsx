@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
-import AccountList from '../../components/list/Account.List';
+import AccountTable from '../../components/list/AccountTable';
+import AccountList from '../../components/list/Tr';
 import Layout from '../../components/template/Layout';
 import { AccountApiProvider } from '../../context/accountContext';
 
@@ -7,7 +8,7 @@ const Accounts: NextPage = () => {
   return (
     <AccountApiProvider>
       <Layout>
-        <AccountList />
+        <AccountTable />
       </Layout>
     </AccountApiProvider>
   );
