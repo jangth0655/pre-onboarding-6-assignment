@@ -13,6 +13,14 @@ export type SubmitData = {
   password: string;
 };
 
+export type AccountStatusType = {
+  관리자확인필요: number;
+  입금대기: number;
+  운용중: number;
+  투자중지: number;
+  해지: number;
+};
+
 export const brokerData: Record<string, string> = {
   '209': '유안타증권',
   '218': '현대증권',
@@ -39,4 +47,12 @@ export const brokerData: Record<string, string> = {
   '291': '신영증권',
   '292': 'LIG투자증권',
   '271': '토스증권',
+};
+
+export const accountStatus: AccountStatusType = {
+  관리자확인필요: 9999,
+  입금대기: 1,
+  운용중: 2,
+  투자중지: 3,
+  해지: 4,
 };
