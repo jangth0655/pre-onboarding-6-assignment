@@ -49,6 +49,17 @@ class HttpError extends Error {
     }
     return this.message;
   }
+
+  get expired() {
+    switch (this.message) {
+      case 'jwt expired':
+        this.message = '시간이 오래 경과 되었습니다.';
+        break;
+      default:
+        break;
+    }
+    return this.message;
+  }
 }
 
 export default HttpError;

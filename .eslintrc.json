@@ -75,6 +75,7 @@
     "@typescript-eslint/return-await": 0,
     "prefer-template": 0,
     "@typescript-eslint/dot-notation": 0,
-    "react/no-unused-prop-types": "warn"
+    "react/no-unused-prop-types": "warn",
+    "@typescript-eslint/no-throw-literal": 0
   }
 }
