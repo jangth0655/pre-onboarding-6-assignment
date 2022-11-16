@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useAccountInfo } from '../../context/accountContext';
-import { useBrokerName } from '../../context/optionalContext';
+import { useBrokerName, useStatus } from '../../context/optionalContext';
 import { usePage } from '../../context/pageContext';
 import { Account } from '../../model/inteface';
 import storage from '../../service/storageService';
@@ -8,6 +8,7 @@ import storage from '../../service/storageService';
 export const useAccount = () => {
   const { currentPage } = usePage();
   const { brokerName } = useBrokerName();
+  const { status } = useStatus();
   const accountService = useAccountInfo();
 
   const {
@@ -32,8 +33,18 @@ export const useAccount = () => {
   );
 
   function filterData(prevData?: Account[]) {
+    if (brokerName && status && status !== 0 && brokerName !== '') {
+      const filter = prevData?.filter(
+        (data) => data.broker_id === brokerName && data.status === status
+      );
+      return filter;
+    }
     if (brokerName && brokerName !== '') {
       const filter = prevData?.filter((data) => data.broker_id === brokerName);
+      return filter;
+    }
+    if (status && status !== 0) {
+      const filter = prevData?.filter((data) => data.status === status);
       return filter;
     }
     return prevData;

@@ -14,11 +14,11 @@ export type SubmitData = {
 };
 
 export type AccountStatusType = {
-  관리자확인필요: number;
-  입금대기: number;
-  운용중: number;
-  투자중지: number;
-  해지: number;
+  관리자확인필요?: number;
+  입금대기?: number;
+  운용중?: number;
+  투자중지?: number;
+  해지?: number;
 };
 
 export const brokerData: Record<string, string> = {
@@ -49,10 +49,10 @@ export const brokerData: Record<string, string> = {
   '271': '토스증권',
 };
 
-export const accountStatus: AccountStatusType = {
+export const accountStatus: Record<string, number> = {
   관리자확인필요: 9999,
   입금대기: 1,
   운용중: 2,
   투자중지: 3,
   해지: 4,
-};
+} as const;
