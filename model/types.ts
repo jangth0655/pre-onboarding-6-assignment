@@ -56,3 +56,9 @@ export const accountStatus: Record<string, number> = {
   투자중지: 3,
   해지: 4,
 } as const;
+
+export const activeState = {
+  active: 'active',
+  inActive: 'inActive',
+  all: 'all',
+};

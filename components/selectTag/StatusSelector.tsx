@@ -6,7 +6,7 @@ import { v4 } from 'uuid';
 const StatusSelector = () => {
   const { handleStatus } = useStatus();
   const [select, setSelect] = useState('');
-  const handleBroker = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleStatusOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const {
       currentTarget: { value },
     } = event;
@@ -17,7 +17,7 @@ const StatusSelector = () => {
   return (
     <div>
       <select
-        onChange={handleBroker}
+        onChange={handleStatusOption}
         name="brokerName"
         className="ml-2 border-2 rounded-md border-gray-300 px-2"
         value={select}

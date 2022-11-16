@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from 'react';
-import { AccountStatusType } from '../model/types';
 
 interface Props {
   children: React.ReactNode;
@@ -15,12 +14,21 @@ type Status = {
   handleStatus?: (status: number) => void;
 };
 
+type Active = {
+  active?: boolean | string;
+  handleActive?: (active: string) => void;
+};
+
+const ALL_ACTIVE = 'all';
+
 export const BrokerContext = createContext<BrokerName>({ brokerName: null });
 export const StatusContext = createContext<Status>({});
+export const ActiveContext = createContext<Active>({ active: ALL_ACTIVE });
 
 export const OptionalProvider = ({ children }: Props) => {
   const [brokerName, setBrokerName] = useState<string>('');
   const [status, setStatus] = useState<number>();
+  const [active, setActive] = useState<string>(ALL_ACTIVE);
 
   const handleBrokerName = (brokerName: string) => {
     setBrokerName(brokerName);
@@ -30,10 +38,16 @@ export const OptionalProvider = ({ children }: Props) => {
     setStatus(status);
   };
 
+  const handleActive = (active: string) => {
+    setActive(active);
+  };
+
   return (
     <BrokerContext.Provider value={{ brokerName, handleBrokerName }}>
       <StatusContext.Provider value={{ handleStatus, status }}>
-        {children}
+        <ActiveContext.Provider value={{ active, handleActive }}>
+          {children}
+        </ActiveContext.Provider>
       </StatusContext.Provider>
     </BrokerContext.Provider>
   );
@@ -41,3 +55,4 @@ export const OptionalProvider = ({ children }: Props) => {
 
 export const useBrokerName = () => useContext(BrokerContext);
 export const useStatus = () => useContext(StatusContext);
+export const useActive = () => useContext(ActiveContext);
