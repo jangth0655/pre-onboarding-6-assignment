@@ -10,35 +10,35 @@ type BrokerName = {
 };
 
 type Status = {
-  status?: number;
-  handleStatus?: (status: number) => void;
+  status?: number | string;
+  handleStatus?: (status: number | string) => void;
 };
 
 type Active = {
   active?: boolean | string;
-  handleActive?: (active: string) => void;
+  handleActive?: (active: boolean | string) => void;
 };
 
-const ALL_ACTIVE = 'all';
+const ALL = 'all';
 
 export const BrokerContext = createContext<BrokerName>({ brokerName: null });
-export const StatusContext = createContext<Status>({});
-export const ActiveContext = createContext<Active>({ active: ALL_ACTIVE });
+export const StatusContext = createContext<Status>({ status: ALL });
+export const ActiveContext = createContext<Active>({ active: ALL });
 
 export const OptionalProvider = ({ children }: Props) => {
-  const [brokerName, setBrokerName] = useState<string>('');
-  const [status, setStatus] = useState<number>();
-  const [active, setActive] = useState<string>(ALL_ACTIVE);
+  const [brokerName, setBrokerName] = useState<string>(ALL);
+  const [status, setStatus] = useState<number | string>(ALL);
+  const [active, setActive] = useState<string | boolean>(ALL);
 
   const handleBrokerName = (brokerName: string) => {
     setBrokerName(brokerName);
   };
 
-  const handleStatus = (status: number) => {
+  const handleStatus = (status: number | string) => {
     setStatus(status);
   };
 
-  const handleActive = (active: string) => {
+  const handleActive = (active: string | boolean) => {
     setActive(active);
   };
 

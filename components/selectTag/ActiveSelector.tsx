@@ -13,8 +13,12 @@ const ActiveSelector = () => {
     } = event;
 
     setSelect(value);
-
-    handleActive && handleActive(value);
+    handleActive &&
+      handleActive(
+        value === activeState.all
+          ? activeState.all
+          : value === activeState.active
+      );
   };
 
   return (

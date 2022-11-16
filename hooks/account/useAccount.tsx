@@ -7,7 +7,6 @@ import {
 } from '../../context/optionalContext';
 import { usePage } from '../../context/pageContext';
 import { Account } from '../../model/inteface';
-import { activeState } from '../../model/types';
 import storage from '../../service/storageService';
 
 export const useAccount = () => {
@@ -34,73 +33,20 @@ export const useAccount = () => {
   );
 
   function filterData(prevData?: Account[]) {
-    const brokerAndStatusSelect =
-      brokerName && status && status !== 0 && brokerName !== '';
-    const brokerSelect = brokerName && brokerName !== '';
-    const statusSelect = status && status !== 0;
-
-    if (brokerAndStatusSelect && active === activeState.active) {
-      return prevData?.filter(
-        (data) =>
-          data.broker_id === brokerName &&
-          data.status === status &&
-          data.is_active
-      );
+    let result: Account[] | undefined = prevData && [...prevData];
+    if (brokerName && brokerName !== 'all') {
+      result = result?.filter((data) => data.broker_id === brokerName);
     }
-
-    if (brokerAndStatusSelect && active === activeState.inActive) {
-      return prevData?.filter(
-        (data) =>
-          data.broker_id === brokerName &&
-          data.status === status &&
-          !data.is_active
-      );
+    if (status && status !== 'all') {
+      result = result?.filter((data) => data.status === +status);
+      return result;
     }
-
-    if (brokerSelect && active === activeState.active) {
-      return prevData?.filter(
-        (data) => data.broker_id === brokerName && data.is_active
-      );
+    if (active !== 'all') {
+      result = active
+        ? result?.filter((data) => data.is_active)
+        : result?.filter((data) => !data.is_active);
     }
-
-    if (brokerSelect && active === activeState.inActive) {
-      return prevData?.filter(
-        (data) => data.broker_id === brokerName && !data.is_active
-      );
-    }
-
-    if (statusSelect && active === activeState.active) {
-      return prevData?.filter(
-        (data) => data.status === status && data.is_active
-      );
-    }
-
-    if (statusSelect && active === activeState.inActive) {
-      return prevData?.filter(
-        (data) => data.status === status && !data.is_active
-      );
-    }
-
-    if (brokerAndStatusSelect) {
-      return prevData?.filter(
-        (data) => data.broker_id === brokerName && data.status === status
-      );
-    }
-    if (brokerSelect) {
-      return prevData?.filter((data) => data.broker_id === brokerName);
-    }
-    if (statusSelect) {
-      return prevData?.filter((data) => data.status === status);
-    }
-
-    if (active === activeState.active) {
-      return prevData?.filter((data) => data.is_active);
-    }
-    if (active === activeState.inActive) {
-      return prevData?.filter((data) => !data.is_active);
-    }
-
-    return prevData;
+    return result;
   }
 
   return {
