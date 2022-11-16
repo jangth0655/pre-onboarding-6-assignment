@@ -2,6 +2,7 @@ import React from 'react';
 import Tr from './Tr';
 import { v4 } from 'uuid';
 import Pagination from '../Pagination';
+import BrokerSelector from '../selectTag/BrokerSelector';
 
 const tableTitle = [
   { title: '계죄명' },
@@ -18,6 +19,7 @@ const tableTitle = [
 const AccountTable = () => {
   return (
     <>
+      <BrokerSelector />
       <table className="table-auto text-gray-800 w-full mt-2 bg-gray-100 border-2 border-gray-300 ">
         <thead>
           <tr>
