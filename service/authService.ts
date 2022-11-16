@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { UserInfo, SubmitData } from '../model/types';
 import HttpError from './http/httpError';
 

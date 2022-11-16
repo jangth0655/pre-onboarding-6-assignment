@@ -4,7 +4,7 @@ import { brokerData } from '../model/types';
 export const accountUsername = (list?: User[], userId?: number) => {
   if (!list || !userId) return;
   const result = list.filter((user) => {
-    return user.id === userId ? user['name'] : null;
+    return user.id === userId ? user.name : null;
   });
   return result[0].name;
 };
@@ -42,7 +42,7 @@ export const accountDate = (date: Date) => {
     year: 'numeric',
   });
   const month = new Date(date).toLocaleString('default', {
-    month: 'numeric',
+    month: '2-digit',
   });
   const day = new Date(date).toLocaleString('default', {
     day: '2-digit',

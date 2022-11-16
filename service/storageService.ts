@@ -1,4 +1,4 @@
-import { User, UserInfo } from '../model/types';
+import { UserInfo } from '../model/types';
 import secureLocalStorage from 'react-secure-storage';
 
 interface Storage {
