@@ -21,11 +21,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <section className="">
       <SideBar userId={user?.id} />
-      <div className="xl:ml-52 ml-44 border-2">
+      <div className="xl:ml-52 ml-44">
         <Header />
-        <main className="border-2 border-gray-300 bg-gray-200 ">
-          {children}
-        </main>
+        <main className="">{children}</main>
       </div>
       <div className="ml-80 flex justify-center items-center p-2">
         <Footer />

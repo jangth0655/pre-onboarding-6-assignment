@@ -16,18 +16,21 @@ const tableTitle = [
 
 const AccountTable = () => {
   return (
-    <table className="table-auto text-gray-800 w-full mt-2">
-      <thead>
-        <tr>
-          {tableTitle.map((title) => (
-            <th className="px-4" key={v4()}>
-              {title.title}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <Tr />
-    </table>
+    <>
+      <table className="table-auto text-gray-800 w-full mt-2 bg-gray-100 border-2 border-gray-300 ">
+        <thead>
+          <tr>
+            {tableTitle.map((title) => (
+              <th className="px-4" key={v4()}>
+                {title.title}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <Tr />
+      </table>
+      <button>page</button>
+    </>
   );
 };
 export default AccountTable;

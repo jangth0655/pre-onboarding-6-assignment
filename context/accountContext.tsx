@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { Account } from '../model/inteface';
 import AccountServiceImpl from '../service/accountService';
 import HttpClient from '../service/http/httpClient';
 
@@ -19,4 +20,4 @@ export const AccountApiProvider = ({ children }: Props) => {
   );
 };
 
-export const useAccount = () => useContext(AccountContext);
+export const useAccountInfo = () => useContext(AccountContext);
