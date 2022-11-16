@@ -1,6 +1,7 @@
 import React from 'react';
 import Tr from './Tr';
 import { v4 } from 'uuid';
+import Pagination from '../Pagination';
 
 const tableTitle = [
   { title: '계죄명' },
@@ -29,7 +30,7 @@ const AccountTable = () => {
         </thead>
         <Tr />
       </table>
-      <button>page</button>
+      <Pagination />
     </>
   );
 };

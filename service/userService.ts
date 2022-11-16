@@ -23,7 +23,7 @@ export default class UserServiceImpl implements UserService {
     return this.httpClient.client
       .get<User[]>('/users', {
         params: {
-          _page,
+          // _page,
           //  _limit: 20,
         },
       })
