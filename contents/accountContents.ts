@@ -7,8 +7,8 @@ export type AccountContentType = {
 export const accountStatus: AccountContentType[] = [
   {
     name: 'status',
-    key: 'all',
-    value: 'all',
+    key: 'ALL',
+    value: 'ALL',
   },
   {
     name: 'status',
@@ -38,7 +38,7 @@ export const accountStatus: AccountContentType[] = [
 ];
 
 export const accountBroker: AccountContentType[] = [
-  { name: 'broker', key: 'all', value: 'all' },
+  { name: 'broker', key: 'ALL', value: 'ALL' },
   { name: 'broker', key: '유안타증권', value: '209' },
   { name: 'broker', key: '현대증권', value: '218' },
   { name: 'broker', key: '미래에셋증권', value: '230' },
@@ -67,7 +67,7 @@ export const accountBroker: AccountContentType[] = [
 ];
 
 export const accountActive: AccountContentType[] = [
-  { name: 'active', key: 'all', value: 'all' },
+  { name: 'active', key: 'ALL', value: 'ALL' },
   { name: 'active', key: '활성화', value: 'active' },
   { name: 'active', key: '비활성화', value: 'inActive' },
 ];

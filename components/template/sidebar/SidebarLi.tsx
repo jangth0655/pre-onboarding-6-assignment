@@ -23,12 +23,10 @@ const SidebarLi: React.FC<Props> = ({ sidebarItem, userId }) => {
 
   const matchTitleWithIcon = (title: Title) => {
     switch (title) {
-      case '대시보드':
+      case '계좌만들기':
         return <AiOutlineDashboard />;
       case '계좌목록':
         return <AiFillBank />;
-      case '사용자':
-        return <AiOutlineUser />;
       case loginTitle:
         return <AiOutlineLogout />;
       default:
@@ -38,14 +36,11 @@ const SidebarLi: React.FC<Props> = ({ sidebarItem, userId }) => {
 
   const handlePage = (title: Title) => {
     switch (title) {
-      case '대시보드':
-        router.push('/accounts');
+      case '계좌만들기':
+        router.push('/create');
         break;
       case '계좌목록':
         router.push('/accounts');
-        break;
-      case '사용자':
-        router.push(`/users/1`);
         break;
       case loginTitle:
         storage.deleteStorage();

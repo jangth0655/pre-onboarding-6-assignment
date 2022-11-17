@@ -28,12 +28,12 @@ export const useAccount = () => {
 
   function filterData(prevData?: Account[]) {
     let result: Account[] | undefined = prevData && [...prevData];
-    if (broker && broker !== 'all') {
+    if (broker && broker !== 'ALL') {
       result = result?.filter(
         (data) => data.broker_id === brokerData[broker as string]
       );
     }
-    if (status && status !== 'all') {
+    if (status && status !== 'ALL') {
       result = result?.filter(
         (data) => data.status === accountStatusData[status as string]
       );
@@ -44,7 +44,6 @@ export const useAccount = () => {
       return result;
     }
     if (active === '비활성화') {
-      console.log(active);
       result = result?.filter((data) => !data.is_active);
     }
 

@@ -28,7 +28,7 @@ const SelectContainer = () => {
   };
 
   return (
-    <div>
+    <div className="ml-3 space-x-4 flex items-center ">
       {allSelectItems.map((selects) => (
         <Select
           key={v4()}

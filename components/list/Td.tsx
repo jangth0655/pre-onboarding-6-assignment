@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { memo } from 'react';
 import {
   accountActive,
@@ -17,9 +18,17 @@ interface Props {
 }
 
 const Td = ({ account, userList }: Props) => {
+  const router = useRouter();
+  const handleUserDetail = () => {
+    router.push(`/users/${account.user_id}`);
+  };
+
   return (
     <>
-      <tr className="">
+      <tr
+        className="border-2 border-gray-50 cursor-pointer hover:text-white hover:bg-gray-800 transition-all"
+        onClick={handleUserDetail}
+      >
         <td className="text-center px-4 py-2 text-sm">
           <span className="tex-sm">{accountName(account.name)}</span>
         </td>

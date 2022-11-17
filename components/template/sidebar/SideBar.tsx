@@ -10,12 +10,11 @@ export type SideBarListType = {
   path: string;
 };
 
-export type Title = '대시보드' | '계좌목록' | '사용자' | '로그아웃';
+export type Title = '계좌만들기' | '계좌목록' | '사용자' | '로그아웃';
 
 const sideBarList: SideBarListType[] = [
-  { title: '대시보드', path: 'dashboard' },
+  { title: '계좌만들기', path: 'dashboard' },
   { title: '계좌목록', path: 'accounts' },
-  { title: '사용자', path: 'users' },
   { title: '로그아웃', path: 'logout' },
 ];
 

@@ -4,7 +4,7 @@ import { v4 } from 'uuid';
 import Pagination from '../Pagination';
 import useUser from '../../hooks/user/useUser';
 import SelectContainer from '../select/SelectContainer';
-import { useRouter } from 'next/router';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const tableTitle = [
   { title: '계죄명' },
@@ -20,13 +20,23 @@ const tableTitle = [
 
 const AccountTable = () => {
   useUser();
-  const router = useRouter();
 
   return (
     <>
-      <SelectContainer />
-
-      <table className="table-auto text-gray-800 w-full mt-2 bg-gray-100 border-2 border-gray-300 ">
+      <div className="flex items-center justify-between">
+        <SelectContainer />
+        <form className="text-sm flex items-center w-[20%] relative mr-4">
+          <input
+            className="py-1 border-2 border-gray-200 focus:border-gray-700 transition-all rounded-md px-2 pr-12 w-full"
+            type="text"
+            placeholder="검색"
+          />
+          <button className="absolute w-[10%] h-full right-4">
+            <AiOutlineSearch size={20} />
+          </button>
+        </form>
+      </div>
+      <table className="table-auto text-gray-800 w-full mt-4 shadow-md">
         <thead>
           <tr>
             {tableTitle.map((title) => (
