@@ -18,16 +18,13 @@ const SelectContainer = () => {
       currentTarget: { value, name },
     } = event;
 
-    router.push(
-      {
-        pathname: router.route,
-        query: {
-          ...router.query,
-          [name]: value,
-        },
+    router.push({
+      pathname: router.route,
+      query: {
+        ...router.query,
+        [name]: value,
       },
-      `${router.route}`
-    );
+    });
   };
 
   return (

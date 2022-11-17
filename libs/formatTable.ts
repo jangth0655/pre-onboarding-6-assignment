@@ -59,5 +59,8 @@ export const accountName = (name: string) => {
 };
 
 export const accountBroker = (brokerId: string) => {
-  return brokerData[brokerId];
+  const filter = Object.keys(brokerData).find(
+    (key) => brokerData[key] === brokerId
+  );
+  return filter;
 };

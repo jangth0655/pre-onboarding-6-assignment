@@ -44,7 +44,8 @@ export const useAccount = () => {
       return result;
     }
     if (active === '비활성화') {
-      result?.filter((data) => !data.is_active);
+      console.log(active);
+      result = result?.filter((data) => !data.is_active);
     }
 
     return result;
