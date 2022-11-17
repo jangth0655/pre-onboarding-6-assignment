@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineMenu, AiOutlineBell } from 'react-icons/ai';
+import useUser from '../../hooks/user/useUser';
 import { User } from '../../model/types';
 
 interface Props {
@@ -7,6 +8,9 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ user }) => {
+  const { email } = useUser();
+  const username = email?.split('@')[0];
+
   return (
     <header className="py-4 flex justify-between items-center">
       <div className="px-6 space-x-4 font-bold flex items-center">
@@ -27,8 +31,8 @@ const Header: React.FC<Props> = ({ user }) => {
         <div>
           <AiOutlineBell size={20} />
         </div>
-        <div className="bg-gray-500 text-white w-6 h-6 flex justify-center items-center text-xs">
-          <span>핀트</span>
+        <div className="bg-gray-500 text-white flex justify-center items-center text-xs rounded-md">
+          <span className="inline-block px-2 py-1">{username || '로그인'}</span>
         </div>
       </div>
     </header>

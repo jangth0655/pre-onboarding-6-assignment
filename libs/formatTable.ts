@@ -1,5 +1,5 @@
 import { brokerData } from '../contents/accountContents';
-import { User } from '../model/inteface';
+import { User } from '../model/interface';
 
 export const accountUsername = (list?: User[], userId?: number) => {
   if (!list || !userId) return;

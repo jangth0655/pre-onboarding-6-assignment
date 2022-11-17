@@ -10,7 +10,7 @@ import {
   accountState,
   accountUsername,
 } from '../../libs/formatTable';
-import { Account, User } from '../../model/inteface';
+import { Account, User } from '../../model/interface';
 
 interface Props {
   account: Account;

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Account } from '../model/inteface';
+import { Account } from '../model/interface';
 import AccountServiceImpl from '../service/accountService';
 import HttpClient from '../service/http/httpClient';
 

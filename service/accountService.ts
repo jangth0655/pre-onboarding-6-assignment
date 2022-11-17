@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { Account } from '../model/inteface';
+import { Account } from '../model/interface';
 
 import HttpError from './http/httpError';
 import storage from './storageService';

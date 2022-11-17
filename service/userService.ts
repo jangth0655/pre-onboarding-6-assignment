@@ -1,4 +1,4 @@
-import { User } from '../model/inteface';
+import { User } from '../model/interface';
 import HttpClient from './http/httpClient';
 
 export interface UserService {

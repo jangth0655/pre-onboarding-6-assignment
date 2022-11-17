@@ -16,11 +16,11 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-  const user = useUser();
+  const { userId } = useUser();
 
   return (
     <section className="">
-      <SideBar userId={user?.id} />
+      <SideBar userId={userId} />
       <div className="xl:ml-52 ml-44">
         <Header />
         <main className="">{children}</main>

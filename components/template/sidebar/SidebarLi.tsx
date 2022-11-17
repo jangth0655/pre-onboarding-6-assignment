@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 
 import {
   AiOutlineDashboard,
-  AiOutlineUser,
   AiOutlineLogout,
   AiFillBank,
 } from 'react-icons/ai';
@@ -61,7 +60,7 @@ const SidebarLi: React.FC<Props> = ({ sidebarItem, userId }) => {
         'flex items-center p-6 space-x-3  last:mb-0 text-md xl:text-lg  hover:text-white hover:bg-sky-700 transition-all cursor-pointer'
       )}
     >
-      <div>{matchTitleWithIcon(sidebarItem.title)}</div>{' '}
+      <div>{matchTitleWithIcon(sidebarItem.title)}</div>
       <span>{sidebarItem.title}</span>
     </div>
   );

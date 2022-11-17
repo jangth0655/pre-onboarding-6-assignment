@@ -5,19 +5,21 @@ import {
   Hydrate,
 } from '@tanstack/react-query';
 import '../styles/globals.css';
+import { useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />;
+      <Hydrate state={pageProps.dehydratedState}>
+        {mounted && <Component {...pageProps} />}
+      </Hydrate>
     </QueryClientProvider>
   );
 }
 
 export default MyApp;
-
-/* 
-  <Hydrate state={pageProps.dehydratedState}>
- </Hydrate>
-*/

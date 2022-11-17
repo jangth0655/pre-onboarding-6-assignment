@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { User } from '../../model/types';
+import { UserInfo } from '../../model/types';
 
 import storage from '../../service/storageService';
 
 const useUser = () => {
-  const [user, setUser] = useState<User>(getUserInfo());
+  const [user, setUser] = useState<UserInfo>(getUserInfo());
   const router = useRouter();
 
   function getUserInfo() {
@@ -17,7 +17,9 @@ const useUser = () => {
       router.replace('/');
     }
   }, [user]);
-
-  return user;
+  return {
+    email: user?.user?.email,
+    userId: user?.user?.id,
+  };
 };
 export default useUser;

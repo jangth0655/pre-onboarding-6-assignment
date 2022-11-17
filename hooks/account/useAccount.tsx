@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { accountStatusData, brokerData } from '../../contents/accountContents';
 import { useAccountInfo } from '../../context/accountContext';
-import { Account } from '../../model/inteface';
+import { Account } from '../../model/interface';
 import storage from '../../service/storageService';
 
 export const useAccount = () => {

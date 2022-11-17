@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useUserData } from '../../context/userContext';
-import { User } from '../../model/inteface';
+import { User } from '../../model/interface';
 import HttpClient from '../../service/http/httpClient';
 import UserServiceImpl from '../../service/userService';
 
