@@ -2,10 +2,12 @@ import React from 'react';
 import Tr from './Tr';
 import { v4 } from 'uuid';
 import Pagination from '../Pagination';
-import BrokerSelector from '../selectTag/BrokerSelector';
-import StatusSelector from '../selectTag/StatusSelector';
-import ActiveSelector from '../selectTag/ActiveSelector';
+import BrokerSelector from '../select/BrokerSelector';
+import StatusSelector from '../select/StatusSelector';
+import ActiveSelector from '../select/ActiveSelector';
 import useUser from '../../hooks/user/useUser';
+import SelectContainer from '../select/SelectContainer';
+import { useRouter } from 'next/router';
 
 const tableTitle = [
   { title: '계죄명' },
@@ -21,11 +23,12 @@ const tableTitle = [
 
 const AccountTable = () => {
   useUser();
+  const router = useRouter();
+
   return (
     <>
-      <BrokerSelector />
-      <StatusSelector />
-      <ActiveSelector />
+      <SelectContainer />
+
       <table className="table-auto text-gray-800 w-full mt-2 bg-gray-100 border-2 border-gray-300 ">
         <thead>
           <tr>

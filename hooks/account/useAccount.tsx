@@ -1,26 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { accountStatusData, brokerData } from '../../contents/accountContents';
 import { useAccountInfo } from '../../context/accountContext';
-import {
-  useActive,
-  useBrokerName,
-  useStatus,
-} from '../../context/optionalContext';
-import { usePage } from '../../context/pageContext';
 import { Account } from '../../model/inteface';
 import storage from '../../service/storageService';
 
 export const useAccount = () => {
-  const { currentPage } = usePage();
-  const { brokerName } = useBrokerName();
-  const { status } = useStatus();
-  const { active } = useActive();
   const accountService = useAccountInfo();
+  const router = useRouter();
+  const { broker, status, active, page } = router.query;
 
   const { data: accountList, isLoading } = useQuery<Account[] | undefined>(
-    ['accounts', currentPage],
+    ['accounts', Number(page)],
     async () => {
       try {
-        return await accountService?.accountList(currentPage);
+        return await accountService?.accountList(Number(page));
       } catch (error) {
         storage.deleteStorage();
       }
@@ -34,18 +28,25 @@ export const useAccount = () => {
 
   function filterData(prevData?: Account[]) {
     let result: Account[] | undefined = prevData && [...prevData];
-    if (brokerName && brokerName !== 'all') {
-      result = result?.filter((data) => data.broker_id === brokerName);
+    if (broker && broker !== 'all') {
+      result = result?.filter(
+        (data) => data.broker_id === brokerData[broker as string]
+      );
     }
     if (status && status !== 'all') {
-      result = result?.filter((data) => data.status === +status);
+      result = result?.filter(
+        (data) => data.status === accountStatusData[status as string]
+      );
       return result;
     }
-    if (active !== 'all') {
-      result = active
-        ? result?.filter((data) => data.is_active)
-        : result?.filter((data) => !data.is_active);
+    if (active === '활성화') {
+      result = result?.filter((data) => data.is_active);
+      return result;
     }
+    if (active === '비활성화') {
+      result?.filter((data) => !data.is_active);
+    }
+
     return result;
   }
 

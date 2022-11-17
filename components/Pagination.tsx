@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 import { v4 } from 'uuid';
-import { usePage } from '../context/pageContext';
 
 const MAX_PAGE = 20;
 const OFFSET = 5;
@@ -9,7 +9,7 @@ const MAX_INDEX = MAX_PAGE / OFFSET - 1;
 
 const Pagination = () => {
   const [index, setIndex] = useState(0);
-  const { handlePage } = usePage();
+  const router = useRouter();
 
   const handlePreviewIndex = () => {
     index === 0 ? index : setIndex((prev) => prev - 1);
@@ -17,6 +17,15 @@ const Pagination = () => {
 
   const handleNextIndex = () => {
     index === MAX_INDEX ? MAX_INDEX : setIndex((prev) => prev + 1);
+  };
+
+  const handlePage = (page: number) => {
+    router.push({
+      pathname: router.route,
+      query: {
+        page,
+      },
+    });
   };
 
   return (
@@ -28,7 +37,7 @@ const Pagination = () => {
         {pages.slice(index * OFFSET, OFFSET + index * OFFSET).map((page) => (
           <div
             key={v4()}
-            onClick={() => handlePage && handlePage(page)}
+            onClick={() => handlePage(page)}
             className="flex justify-center items-center w-6 h-6 bg-sky-600 p-1 text-white hover:bg-sky-400 transition-all cursor-pointer rounded-md"
           >
             <span className="text-sm">{page}</span>

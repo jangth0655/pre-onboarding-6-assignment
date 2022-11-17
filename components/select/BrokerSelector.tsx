@@ -17,9 +17,9 @@ const BrokerSelector = () => {
     <div>
       <select
         onChange={handleBroker}
+        value={select}
         name="brokerName"
         className="ml-2 border-2 rounded-md border-gray-300 px-2"
-        value={select}
       >
         <option value="all">전체</option>
         {Object.keys(brokerData).map((broker) => (
