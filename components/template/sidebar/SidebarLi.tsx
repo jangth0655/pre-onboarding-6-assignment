@@ -56,7 +56,7 @@ const SidebarLi: React.FC<Props> = ({ sidebarItem, userId }) => {
     }
   };
 
-  const matchedPage = sidebarItem.path === router.asPath.split('/')[1];
+  const matchedPage = sidebarItem.path === router.route.split('/')[1];
 
   return (
     <div
