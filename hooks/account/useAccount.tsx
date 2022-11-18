@@ -46,12 +46,37 @@ export const useAccount = () => {
     if (active === '비활성화') {
       result = result?.filter((data) => !data.is_active);
     }
-
     return result;
   }
 
   return {
     accountList,
+    isLoading,
+  };
+};
+
+export const useAccountSearch = () => {
+  const accountService = useAccountInfo();
+  const router = useRouter();
+  const {
+    query: { keyword },
+  } = router;
+  const q = typeof keyword === 'string' ? keyword : keyword?.join('');
+  console.log(typeof q);
+  console.log('router', q);
+  console.log('router keyword', router.query);
+  const { data: searchData, isLoading } = useQuery<Account[] | undefined>(
+    ['search', q],
+    async () => {
+      try {
+        return await accountService?.search(q);
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+  );
+  return {
+    searchData,
     isLoading,
   };
 };

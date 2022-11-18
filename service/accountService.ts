@@ -12,13 +12,22 @@ export interface AccountService {
 export default class AccountServiceImpl implements AccountService {
   constructor(private httpClient: AxiosInstance) {}
 
-  search = async (keyword: string) => {
-    const { data } = await this.httpClient.get<Account[]>('/search', {
-      params: {
-        q: keyword,
-      },
-    });
-    return data;
+  search = async (keyword?: string) => {
+    try {
+      const { data } = await this.httpClient.get<Account[]>('/search', {
+        params: {
+          q: keyword,
+        },
+      });
+      return data;
+    } catch (error) {
+      if (error instanceof Error) {
+        if (axios.isAxiosError(error) && error.response) {
+          throw new HttpError(error.response.data);
+        }
+      }
+    }
+    throw new Error('Unknown Error');
   };
 
   accountList = async (_page: number) => {
